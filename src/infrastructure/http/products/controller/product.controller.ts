@@ -11,7 +11,7 @@ import { AuthGuard } from 'src/security/auth.guard';
 
 
 @Controller('products')
- @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 export class ProductController {
   constructor(
     private readonly createProduct: CreateProductUseCase,
@@ -19,22 +19,22 @@ export class ProductController {
     private readonly findOneProduct: FindOneProductUseCase,
     private readonly updateProduct: UpdateProductUseCase,
     private readonly deleteProduct: DeleteProductUseCase,
-  ) {}
+  ) { }
 
   @Post()
   async create(@Body() body: CreateProductDto): Promise<Product> {
     return this.createProduct.execute(body);
   }
 
-@Get()
-async findAll(
-  @Query('name') name?: string,
-  @Query('category') category?: string,
-  @Query('minPrice') minPrice?: number,
-  @Query('maxPrice') maxPrice?: number,
-): Promise<Product[]> {
-  return this.findAllProducts.execute({ name, category, minPrice, maxPrice });
-}
+  @Get()
+  async findAll(
+    @Query('name') name?: string,
+    @Query('category') category?: string,
+    @Query('minPrice') minPrice?: number,
+    @Query('maxPrice') maxPrice?: number,
+  ): Promise<Product[]> {
+    return this.findAllProducts.execute({ name, category, minPrice, maxPrice });
+  }
 
 
   @Get(':id')

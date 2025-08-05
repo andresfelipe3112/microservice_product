@@ -25,3 +25,5 @@ CREATE TABLE products (
 
 
 CREATE INDEX idx_products_categories ON products USING GIN (categories);
+
+
